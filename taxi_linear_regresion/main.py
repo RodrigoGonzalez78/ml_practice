@@ -1,4 +1,3 @@
-import numpy as np
 import pandas as pd
 import seaborn as sns
 import ml_functions
@@ -36,9 +35,10 @@ print("Cuantas compañias hay en el dataset? \t\tRespuesta: {number}".format(num
 most_freq_payment_type = training_df['PAYMENT_TYPE'].value_counts().idxmax()
 print("Cual es el tipode pago mas Frecuente? \t\tRespuesta: {type}".format(type = most_freq_payment_type))
 
-# Are any features missing data?
+
+#Hay datos faltantes?
 missing_values = training_df.isnull().sum().sum()
-print("Are any features missing data? \t\t\t\tAnswer:", "No" if missing_values == 0 else "Yes")
+print("Hay datos faltantes? \t\t\t\tREspuesta:", "No" if missing_values == 0 else "Yes")
 
 
 #Matrices de correlación
@@ -46,14 +46,12 @@ print(training_df.corr(numeric_only = True))
 
 sns.pairplot(training_df, x_vars=["FARE", "TRIP_MILES", "TRIP_SECONDS"], y_vars=["FARE", "TRIP_MILES", "TRIP_SECONDS"]).savefig("pairplot.png")
 
-
-#Experimento 1
-# The following variables are the hyperparameters.
+# Entrenamiento del modelo
 learning_rate = 0.001
 epochs = 20
 batch_size = 50
 
-# Specify the feature and the label.
+
 features = ['TRIP_MILES']
 label = 'FARE'
 
